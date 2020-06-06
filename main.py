@@ -618,7 +618,7 @@ for inx in range(2, 5):
 
     print('\nbalanced accuracy: %f\n' % (balanced))
 
-model_conv_2.save(model_conv_02.h5')
+model_conv_2.save('model_conv_02.h5')
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------
@@ -779,14 +779,13 @@ y_pred_6 = model_conv_1.predict(seq_test_30, verbose=1)
 y_pred_7 = model_conv_2.predict(seq_test_60, verbose=1)
 y_pred_8 = model_conv_3.predict(seq_test_60, verbose=1)
 
-
 # weighted average
-#y_p = (y_p_1 +y_p_2 +y_p_3+y_pred_7+y_pred_8)*.55 + (y_pred_2+y_pred_3+y_pred_4+y_pred_5+y_pred_6)*.45
-
 y_p = (y_p_3 + y_pred_7 + y_pred_8) * .55 + (y_pred_2 +
                                              y_pred_3 + y_pred_4 + y_pred_5 + y_pred_6) * .45
-y_pred = np.argmax(y_p, axis=1)
 
+#y_p = (y_p_1 +y_p_2 +y_p_3+y_pred_7+y_pred_8)*.55 + (y_pred_2+y_pred_3+y_pred_4+y_pred_5+y_pred_6)*.45
+
+y_pred = np.argmax(y_p, axis=1)
 
 categories = [class_dic_reversed[x] for x in y_pred.tolist()]
 
