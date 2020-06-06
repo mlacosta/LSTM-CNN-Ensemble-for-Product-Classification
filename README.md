@@ -1,6 +1,6 @@
 # MeLi Data Challenge 2019 | Deep Learning
 
-### Author: Mariano Leonel Acosta | Public Leaderboard #17 - 0.89764
+### Author: Mariano Leonel Acosta | Leaderboard #17 - 0.89764
 https://ml-challenge.mercadolibre.com/final_results
 
 I developed a predictive system for product classification with 1588 different categories. Using Natural Language Processing (NLP) combined with Deep Learning, I was able to analize over two millions product descriptions from [Mercado Libre](http:///wwww.mercadolibre.com.ar) and predict new cases with a balanced accuracy of 89,76%. 
