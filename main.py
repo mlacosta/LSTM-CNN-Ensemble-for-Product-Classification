@@ -445,28 +445,7 @@ for inx in range(0, 2):
     print('\nbalanced accuracy: %f\n' % (balanced))
 
 model_4.save('model_04.h5')
-# model_4.load_weights('model_04.h5')
 
-# -------------------------------------------------------------------------------------------------------------------------------
-# Fifth Model
-
-batch_size = 128
-
-model_5 = Sequential()
-
-model_5.add(Embedding(30000 + 2, 50, input_length=max_length))
-
-model_5.add(LSTM(128, return_sequences=False))
-
-
-model_5.add(Dense(1588, activation='softmax'))
-
-opt = tf.keras.optimizers.Adam(lr=0.001, beta_1=0.99, beta_2=0.999)
-
-model_5.compile(loss='sparse_categorical_crossentropy',
-                optimizer=opt, metrics=['accuracy'])
-
-model_5.load_weights('model_05.h5')
 # -------------------------------------------------------------------------------------------------------------------------------------------
 # Conv NET 1
 model_conv_1 = Sequential()
@@ -703,12 +682,11 @@ seq_test_60 = keras.preprocessing.sequence.pad_sequences(
     seq_test_60, maxlen=max_length, padding='post', truncating='post')
 
 
-y_pred_2 = model_5.predict(seq_test_30, verbose=1)
 y_pred_3 = model_2.predict(seq_test_30, verbose=1)  # new
 y_pred_4 = model_3.predict(seq_test_60, verbose=1)  # new
 
 
-y_pred = (y_pred_2 + y_pred_3 + y_pred_4) / 3
+y_pred = ( y_pred_3 + y_pred_4) / 2
 
 y_pred = np.argmax(y_pred, axis=1)
 
@@ -723,53 +701,8 @@ output.to_csv(
     index=False)
 
 
-# -------------------------------------------------------------------------------------------------------------------------------
-
-members = [model_5, model_2, model_3]
-
-for i in range(len(members)):
-    model = members[i]
-
-    for layer in model.layers:
-        # make not trainable
-        layer.trainable = False
-
-for layer in model_4.layers:
-    layer.trainable = False
-
-    # define multi-headed input
-
-
-ensemble_visible = [model.input for model in members] + [model_4.input]
-# concatenate merge output from each model
-ensemble_outputs = [model.output for model in members]
-merge = Average()(ensemble_outputs)
-merge2 = Concatenate()([merge, model_4.output])
-hidden = Dense(3200, activation='relu')(merge2)
-output = Dense(1588, activation='softmax')(hidden)
-opt = tf.keras.optimizers.Adam(lr=1e-3, beta_1=0.99, beta_2=0.999)
-model_s4 = Model(inputs=ensemble_visible, outputs=output)
-
-
-# compile
-model_s4.compile(
-    loss='sparse_categorical_crossentropy',
-    optimizer=opt,
-    metrics=['accuracy'])
-model_s4.load_weights('model_stack_04.h5')
-
-
 # FINAL ENSEMBLE----------------------------------------------------------
-#y_p_1 = model_s2.predict([seq_test_30,seq_test_30,seq_test_60,seq_test_60],batch_size=128, verbose=1)
-#y_p_2 = model_s3.predict([seq_test_30,seq_test_30,seq_test_60,seq_test_60],batch_size=128, verbose=1)
-y_p_3 = model_s4.predict([seq_test_30,
-                          seq_test_30,
-                          seq_test_60,
-                          seq_test_60],
-                         batch_size=128,
-                         verbose=1)
 
-y_pred_2 = model_5.predict(seq_test_30, verbose=1)
 y_pred_3 = model_2.predict(seq_test_30, verbose=1)
 y_pred_4 = model_3.predict(seq_test_60, verbose=1)
 
@@ -780,10 +713,8 @@ y_pred_7 = model_conv_2.predict(seq_test_60, verbose=1)
 y_pred_8 = model_conv_3.predict(seq_test_60, verbose=1)
 
 # weighted average
-y_p = (y_p_3 + y_pred_7 + y_pred_8) * .55 + (y_pred_2 +
-                                             y_pred_3 + y_pred_4 + y_pred_5 + y_pred_6) * .45
+y_p = (y_pred_7 + y_pred_8) * .55 + (y_pred_3 + y_pred_4 + y_pred_5 + y_pred_6) * .45
 
-#y_p = (y_p_1 +y_p_2 +y_p_3+y_pred_7+y_pred_8)*.55 + (y_pred_2+y_pred_3+y_pred_4+y_pred_5+y_pred_6)*.45
 
 y_pred = np.argmax(y_p, axis=1)
 
