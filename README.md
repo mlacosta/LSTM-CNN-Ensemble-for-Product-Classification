@@ -8,7 +8,7 @@ I developed a predictive system for product classification with 1588 different c
 The final model consists of a Neural Network ensemble, a combination of Long Short Term Memories RNN (LSTM) and Convolutional Nets (CNN). Each sub-system was trained indepently on differents subset of the dataset. Then, to make the final prediction, each output is combined using weighted sums.  
 
 ## Implementation
-In order to try this project on your own, you need to download first the dataset from [HERE](https://ml-challenge.mercadolibre.com/downloads).Next, simply run the main.py script. 
+In order to try this project on your own, you need to download first the dataset from [HERE](https://ml-challenge.mercadolibre.com/downloads). Next, simply run the main.py script. 
 
 The following libraries are required:
 
