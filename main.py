@@ -689,7 +689,7 @@ model_conv_3.save('model_conv_03.h5')
 max_length = 15
 
 data_test = pd.read_csv(
-    'F:\\Programacion\\Python\\Deep Learning\\ML Data Challenge\\test.csv')
+    'test.csv')
 
 # reverse the dictionary
 class_dic_reversed = {v: k for k, v in class_dic.items()}
@@ -719,7 +719,7 @@ data_test['category'] = categories
 output = data_test.drop(['title', 'language'], axis=1)
 
 output.to_csv(
-    r'F:\\Programacion\\Python\\Deep Learning\\ML Data Challenge\\ENSEMBLE\\NEW TRY\result.csv',
+    r'result.csv',
     index=False)
 
 
