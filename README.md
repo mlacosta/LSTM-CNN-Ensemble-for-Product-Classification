@@ -21,7 +21,7 @@ $gunzip resources/train.csv.gz
 
 Next, simply run the *main.py* script. 
 
-The following libraries are required:
+**The following libraries are required:**
 
 * Numpy
 * Pandas
