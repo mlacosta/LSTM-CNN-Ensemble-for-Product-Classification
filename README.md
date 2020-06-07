@@ -17,6 +17,7 @@ $wget https://meli-data-challenge.s3.amazonaws.com/sample_submission.csv
 $gunzip resources/train.csv.gz
 ```
 
+Alternately the resources can be downloaded manually from [HERE](https://ml-challenge.mercadolibre.com/downloads).
 Next, simply run the *main.py* script. 
 
 The following libraries are required:
