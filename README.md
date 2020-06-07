@@ -8,13 +8,13 @@ I developed a predictive system for product classification with 1588 different c
 The final model consists of a Neural Network ensemble, a combination of Long Short Term Memory RNNs (LSTM) and Convolutional Nets (CNN). Each sub-system was trained independently on differents subset of the dataset. Then, to make the final prediction, each output is combined using weighted sums.  
 
 ## Implementation
-In order to try this project on your own, you need to download first the dataset. 
+In order to try this project on your own, first you need to download the dataset (using Bash): 
 
 ```
-wget https://meli-data-challenge.s3.amazonaws.com/train.csv.gz 
-wget https://meli-data-challenge.s3.amazonaws.com/test.csv 
-wget https://meli-data-challenge.s3.amazonaws.com/sample_submission.csv 
-gunzip resources/train.csv.gz
+$wget https://meli-data-challenge.s3.amazonaws.com/train.csv.gz 
+$wget https://meli-data-challenge.s3.amazonaws.com/test.csv 
+$wget https://meli-data-challenge.s3.amazonaws.com/sample_submission.csv 
+$gunzip resources/train.csv.gz
 ```
 
 Next, simply run the *main.py* script. 
