@@ -3,9 +3,9 @@
 ### Author: Mariano Leonel Acosta | Leaderboard #17 - 0.89764
 https://ml-challenge.mercadolibre.com/final_results
 
-I developed a predictive system for product classification with 1588 different categories. Using Natural Language Processing (NLP) combined with Deep Learning, I was able to analize over two millions product descriptions from [Mercado Libre](http:///www.mercadolibre.com.ar) and predict new cases with a balanced accuracy of 89,76%. 
+I developed a predictive system for product classification with 1588 different categories. Using Natural Language Processing (NLP) combined with Deep Learning, I was able to analyze over two million product descriptions from Mercado Libre and predict new cases with a balanced accuracy of 89,76%.
 
-The final model consists of a Neural Network ensemble, a combination of Long Short Term Memory RNNs (LSTM) and Convolutional Nets (CNN). Each sub-system was trained independently on differents subset of the dataset. Then, to make the final prediction, each output is combined using weighted sums.  
+The final model consists of a Neural Network ensemble, a combination of Long Short Term Memory RNNs (LSTM) and Convolutional Nets (CNN). Each sub-system was trained independently on different subset of the dataset. Then, to make the final prediction, each output is combined using weighted sums.
 
 ## Implementation
 In order to try this project on your own, first you need to download the dataset (using Bash): 
